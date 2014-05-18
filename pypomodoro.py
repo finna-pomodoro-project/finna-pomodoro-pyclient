@@ -76,6 +76,8 @@ class PomodoroWindow(Gtk.Window):
         self.resume_button.connect("clicked", self.on_resume_button_clicked)
         self.hbox.pack_start(self.resume_button, True, True, 0)
 
+        self.connect("delete-event", self.on_delete_event)
+
         self.gather_info()
         GLib.timeout_add_seconds(30, self.on_timeout)
 
@@ -138,6 +140,10 @@ class PomodoroWindow(Gtk.Window):
     def on_current_countdown_result(self, current_countdown):
         self.current_countdown = current_countdown
         self.update()
+
+    def on_delete_event(self, widget, event):
+        self.hide()
+        return True
 
     def gather_info(self):
         bus.call_async(bus_name, object_path, dbus_interface, 'is_running', '',
