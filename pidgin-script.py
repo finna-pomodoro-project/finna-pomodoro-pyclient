@@ -72,7 +72,15 @@ def on_is_working_time_result(is_working_time):
     else:
         available_slot()
 
+def on_is_running_result(is_running):
+    if is_running:
+        bus.call_async(pomodoro_bus_name, pomodoro_object_path,
+                       pomodoro_dbus_interface, 'is_working_time', '', [],
+                       on_is_working_time_result, None)
+    else:
+        available_slot()
+
 bus.call_async(pomodoro_bus_name, pomodoro_object_path, pomodoro_dbus_interface,
-               'is_working_time', '', [], on_is_working_time_result, None)
+               'is_running', '', [], on_is_running_result, None)
 
 mainloop.run()
