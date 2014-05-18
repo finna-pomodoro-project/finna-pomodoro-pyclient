@@ -203,22 +203,24 @@ systray_icon = SystrayIcon()
 def on_pomodoro_resumed_signal():
     resumed_msg.show()
     print(resumed_msg.get_property('summary'))
+    window.is_running = True
     window.update()
 
 def on_pomodoro_paused_signal():
     paused_msg.show()
     print(paused_msg.get_property('summary'))
+    window.is_running = False
     window.update()
 
 def on_work_session_started_signal():
     work_msg.show()
     print(work_msg.get_property('summary'))
-    window.update()
+    window.gather_info()
 
 def on_work_session_stopped_signal():
     procrastinate_msg.show()
     print(procrastinate_msg.get_property('summary'))
-    window.update()
+    window.gather_info()
 
 bus.add_signal_receiver(on_pomodoro_resumed_signal,
                         signal_name='pomodoro_resumed',
