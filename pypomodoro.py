@@ -22,7 +22,7 @@ import dbus
 import dbus.mainloop.glib
 from gi.repository import Notify, GObject, Gtk, GLib
 
-ICON_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'icon.svg'))
+ICON_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'icon.svg'))
 
 Notify.init("PyPomodoro")
 
