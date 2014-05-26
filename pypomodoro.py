@@ -21,6 +21,7 @@ import os
 import dbus
 import dbus.mainloop.glib
 from gi.repository import Notify, GObject, Gtk, GLib
+from datetime import datetime
 
 ICON_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'icon.svg'))
 
@@ -202,24 +203,25 @@ systray_icon = SystrayIcon()
 
 def on_pomodoro_resumed_signal():
     resumed_msg.show()
-    print(resumed_msg.get_property('summary'))
+    print(str(datetime.now()) + ': ' + resumed_msg.get_property('summary'))
     window.is_running = True
     window.update()
 
 def on_pomodoro_paused_signal():
     paused_msg.show()
-    print(paused_msg.get_property('summary'))
+    print(str(datetime.now()) + ': ' + paused_msg.get_property('summary'))
     window.is_running = False
     window.update()
 
 def on_work_session_started_signal():
     work_msg.show()
-    print(work_msg.get_property('summary'))
+    print(str(datetime.now()) + ': ' + work_msg.get_property('summary'))
     window.gather_info()
 
 def on_work_session_stopped_signal():
     procrastinate_msg.show()
-    print(procrastinate_msg.get_property('summary'))
+    print(str(datetime.now()) + ': '
+          + procrastinate_msg.get_property('summary'))
     window.gather_info()
 
 bus.add_signal_receiver(on_pomodoro_resumed_signal,
