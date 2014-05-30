@@ -19,6 +19,13 @@ this client, as the client by itself provides no functionality.
   Python 3.
 - libnotify
 
+## eSpeak script
+
+If you plan to use the espeak script, you're also going to need:
+
+- eSpeak
+- [Python bindings for eSpeak](https://launchpad.net/python-espeak)
+
 # License
 
 This program is free software: you can redistribute it and/or modify it under
