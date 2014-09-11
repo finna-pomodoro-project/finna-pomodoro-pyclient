@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # This file is part of the Finna Pomodoro Project
 # Copyright (C) 2014 Vinícius dos Santos Oliveira <vini.ipsmaker@gmail.com>
